@@ -177,7 +177,7 @@ public:
     // But we never want to schedule events into the current slice, because then cores might to
     // run small slices to sync up again. This is especially important for events that are always
     // scheduled and repated.
-    static constexpr int MAX_SLICE_LENGTH = BASE_CLOCK_RATE_ARM11 / 234;
+    static constexpr int MAX_SLICE_LENGTH = 20000;
 
     class Timer {
     public:
@@ -186,9 +186,8 @@ public:
 
         s64 GetMaxSliceLength() const;
 
-        void Advance();
+        void Advance(s64 max_slice_length = MAX_SLICE_LENGTH);
 
-        void SetNextSlice(s64 max_slice_length = MAX_SLICE_LENGTH);
 
         void Idle();
 
@@ -196,6 +195,7 @@ public:
         u64 GetIdleTicks() const;
 
         void AddTicks(u64 ticks);
+        void SetNextSlice(s64 max_slice_length = MAX_SLICE_LENGTH);
 
         s64 GetDowncount() const;
 
@@ -269,6 +269,12 @@ public:
 
     s64 GetGlobalTicks() const;
 
+    void AddToGlobalTicks(s64 ticks) {
+        global_timer += ticks;
+    }
+
+    void SetNextSlice(s64 max_slice_length = MAX_SLICE_LENGTH);
+
     /**
      * Updates the value of the cpu clock scaling to the new percentage.
      */
@@ -284,6 +290,7 @@ public:
     }
 
 private:
+    s64 global_timer = 0;
     // unordered_map stores each element separately as a linked list node so pointers to
     // elements remain stable regardless of rehashes/resizing.
     std::unordered_map<std::string, TimingEventType> event_types = {};
@@ -298,6 +305,7 @@ private:
     template <class Archive>
     void serialize(Archive& ar, const unsigned int file_version) {
         // event_types set during initialization of other things
+        ar& global_timer;
         ar& timers;
         if (file_version == 0) {
             std::shared_ptr<Timer> x;
