@@ -1,3 +1,17 @@
+## Fork Description
+
+This fork is based off nightly-1962 (commit `aaeba6759e6d57968ce0b12f6245f45836dec546`). The only change it makes is reverting the core timing rewrite in nightly-1544, which caused a performance drop in Dragon Quest Monsters Joker 3 Professional (https://citra-emu.org/wiki/citra-legacy-builds/#last-build-before-the-core-timing-rewrite). It will likely cause performance regressions for almost every other game.
+
+It is helpful if for some reason you cannot run nightly-1543 (for example, if you use an AMD GPU that no longer uses drivers that work with nightly-1543).
+
+
+### Significant Nightly Releases
+https://github.com/citra-emu/citra-nightly/releases/tag/nightly-1543
+
+https://github.com/citra-emu/citra-nightly/releases/tag/nightly-1544
+
+https://github.com/citra-emu/citra-nightly/releases/tag/nightly-1962
+
 <h1 align="center">
   <br>
   <a href="https://citra-emu.org/"><img src="https://raw.githubusercontent.com/citra-emu/citra-assets/master/Main/citra_logo.svg" alt="Citra" width="200"></a>
