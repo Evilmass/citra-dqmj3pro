@@ -7,7 +7,10 @@ based off [citra-dqmj3pro](https://github.com/Slashaim/citra-dqmj3pro)
 inspired by [lime3ds-dqmj3p](https://github.com/Lurpigi/lime3ds-dqmj3p)
 
 ### build
-install [Python3.10.11](https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe)
+[Python3.10.11](https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe)
+[Cmake 3.29.2](https://github.com/Kitware/CMake/releases/download/v3.29.2/cmake-3.29.2-windows-x86_64.zip)
+[Msys2](https://repo.msys2.org/distrib/x86_64/msys2-x86_64-20240113.exe)
+[Vulkan SDK](https://sdk.lunarg.com/sdk/download/1.4.313.2/windows/vulkansdk-windows-X64-1.4.313.2.exe)
 
 ```shell
 git clone https://github.com/Evilmass/citra-dqmj3pro.git
