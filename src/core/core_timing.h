@@ -177,7 +177,7 @@ public:
     // But we never want to schedule events into the current slice, because then cores might to
     // run small slices to sync up again. This is especially important for events that are always
     // scheduled and repated.
-    static constexpr int MAX_SLICE_LENGTH = 3000;
+    static constexpr int MAX_SLICE_LENGTH = 4000;
 
     class Timer {
     public:
