@@ -1,24 +1,19 @@
-## Build Description
+## Fork Description
 
-fix submodules link
-
-### based
-based off [citra-dqmj3pro](https://github.com/Slashaim/citra-dqmj3pro)  
-inspired by [lime3ds-dqmj3p](https://github.com/Lurpigi/lime3ds-dqmj3p)
+### fix
+1. submodules link
+2. CI/CD(src/common/file_util.cpp -> struct _stat64 file_info;)
 
 ### build
-install [Python3.10.11](https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe)
-
 ```shell
 git clone https://github.com/Evilmass/citra-dqmj3pro.git
 cd citra-dqmj3pro
 git submodule update --init --recursive
 ```
+follow [build sturction](https://web.archive.org/web/20240229114614/https://github.com/citra-emu/citra/wiki/Building-For-Windows) or use Github Actions
 
-follow [build sturction](https://web.archive.org/web/20240229114614/https://github.com/citra-emu/citra/wiki/Building-For-Windows) to build
 
-
-## Fork Description
+## Origin Fork Description
 
 This fork is based off nightly-1962 (commit `aaeba6759e6d57968ce0b12f6245f45836dec546`). The only change it makes is reverting the core timing rewrite in nightly-1544, which caused a performance drop in Dragon Quest Monsters Joker 3 Professional (https://citra-emu.org/wiki/citra-legacy-builds/#last-build-before-the-core-timing-rewrite). It will likely cause performance regressions for almost every other game.
 

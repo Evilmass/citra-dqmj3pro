@@ -1,7 +1,7 @@
 #!/bin/sh -ex
 
 mkdir build && cd build
-cmake .. -G Ninja \
+cmake .. -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_C_COMPILER_LAUNCHER=ccache \
     -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
