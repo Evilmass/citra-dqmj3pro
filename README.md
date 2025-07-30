@@ -1,21 +1,50 @@
-## citra-mhxx-pro
+# citra-dqmj3pro
 
-### buildtools
+Custom-built emulator optimized for Monster Hunter Double Cross
+- **Fix lag:** Periodic slowdowns with frame drops
+- **Port functions:** Touch-mapping, fix SaveStates hotkeys
+
+Inspired by
+- [Lurpigi/Lime3DS](https://github.com/Lurpigi/lime3ds-dqmj3p)
+- [Slashaim/citra-dqmj3pro](https://github.com/Slashaim/citra-dqmj3pro)
+
+**Warning**
+- Do not cherry-pick this commit: [Update FPS to roughly match the actual 3DS rate](https://github.com/Evilmass/citra-nightly/commit/5e95b35900bb8c840169c4446634ff67982aa842), It will cause the frame rate to randomly drop to 56.
+- also keep `src\core\hw\gpu.h -> SCREEN_REFRESH_RATE = 60`
+
+
+## buildtools
 - **[VS2022_BuildTools](https://aka.ms/vs/17/release/vs_buildtools.exe)**
 - **[Vulkan SDK 1.4.304.1](https://sdk.lunarg.com/sdk/download/1.4.304.1/windows/VulkanSDK-1.4.304.1-Installer.exe)**
 - **[Cmake](https://github.com/Kitware/CMake/releases/download/v4.0.3/cmake-4.0.3-windows-x86_64.msi)**
-- **[Git For Windows](https://github.com/git-for-windows/git/releases/download/v2.50.1.windows.1/Git-2.50.1-64-bit.exe)**
+- **[Git](https://github.com/git-for-windows/git/releases/download/v2.50.1.windows.1/Git-2.50.1-64-bit.exe)**
 - **[7z](https://www.7-zip.org/a/7z2500-x64.exe)**
 
-### build
 ```shell
-# msvc 2019
-mkdir build && cd build
-cmake .. -G "Visual Studio 17 2022" -A x64 -T v142 -DCMAKE_SYSTEM_VERSION=10.0.19041.0  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCITRA_USE_BUNDLED_QT=1 -DCITRA_USE_BUNDLED_SDL2=1 -DCITRA_ENABLE_COMPATIBILITY_REPORTING=OFF -DUSE_DISCORD_PRESENCE=OFF -DENABLE_MF=ON -DENABLE_FFMPEG_VIDEO_DUMPER=ON
-cd ..
-msbuild build/citra.sln -m:2 -p:Configuration=Release,Platform=x64 -t:Rebuild
+# vulkan SDK
+VulkanSDK-1.4.304.1-Installer.exe --accept-licenses --default-answer --confirm-command install --system-proxy=http://127.0.0.1:10808
 ```
 
+## build
+
+```shell
+git clone --recursive https://github.com/Evilmass/citra-dqmj3pro
+mkdir build && cd build
+
+# msvc 2019
+cmake .. -G "Visual Studio 17 2022" -A x64 -T v142 -DCMAKE_SYSTEM_VERSION=10.0.19041.0 -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release -DENABLE_QT_TRANSLATION=ON -DCITRA_ENABLE_COMPATIBILITY_REPORTING=OFF -DENABLE_COMPATIBILITY_LIST_DOWNLOAD=OFF -DUSE_DISCORD_PRESENCE=OFF
+cd ..
+msbuild build/citra.sln -m -p:Configuration=Release,Platform=x64 -t:Rebuild
+
+# pack
+bash pack.sh build/
+```
+
+## note
+```shell
+# aqtinstall
+aqt.exe install-qt windows desktop 6.5.0 win64_msvc2019_64 -m qtmultimedia --outputdir ./qt-6.5.0-msvc2019_64 # qttranslations
+```
 
 ## Original Fork Description
 
