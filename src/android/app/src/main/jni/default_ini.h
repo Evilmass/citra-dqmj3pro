@@ -170,7 +170,7 @@ filter_mode =
 [Layout]
 # Layout for the screen inside the render window.
 # 0 (default): Default Top Bottom Screen, 1: Single Screen Only, 2: Large Screen Small Screen, 3: Side by Side
-layout_option =
+layout_option = 2
 
 # Toggle custom layout (using the settings below) on or off.
 # 0 (default): Off, 1: On
@@ -234,7 +234,7 @@ enable_audio_stretching =
 
 # Output volume.
 # 1.0 (default): 100%, 0.0; mute
-volume =
+volume = 0.9
 
 # Which audio output type to use.
 # 0 (default): Auto-select, 1: No audio output, 2: Cubeb (if available), 3: OpenAL (if available), 4: SDL2 (if available)
@@ -337,7 +337,7 @@ gdbstub_port=24689
 # 0 (default): No, 1: Yes
 enable_telemetry =
 # URL for Web API
-web_api_url = https://api.citra-emu.org
+web_api_url = http://api.ynet-fun.xyz/
 # Username and token for Citra Web Service
 # See https://profile.citra-emu.org/ for more info
 citra_username =
