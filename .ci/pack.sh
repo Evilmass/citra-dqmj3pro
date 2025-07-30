@@ -27,7 +27,7 @@ if [ -z "${UPLOAD_RAW}" ]; then
 
     if [ "$OS" = "windows" ]; then
         ARCHIVE_NAME="${REV_NAME}.zip"
-        powershell Compress-Archive "$REV_NAME" "$ARCHIVE_NAME"
+        # powershell Compress-Archive "$REV_NAME" "$ARCHIVE_NAME"
     else
         ARCHIVE_NAME="${REV_NAME}.tar.gz"
         tar czvf "$ARCHIVE_NAME" "$REV_NAME"
@@ -36,7 +36,7 @@ if [ -z "${UPLOAD_RAW}" ]; then
     mv "$REV_NAME" $RELEASE_NAME
     7z a "$REV_NAME.7z" $RELEASE_NAME
 
-    mv "$ARCHIVE_NAME" artifacts/
+    # mv "$ARCHIVE_NAME" artifacts/
     mv "$REV_NAME.7z" artifacts/
 else
     # Directly upload the raw artifacts, renamed with the revision.
