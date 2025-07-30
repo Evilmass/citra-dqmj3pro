@@ -1,9 +1,27 @@
-## Fork Description
+## citra-mhxx-pro
+
+### buildtools
+- **[VS2022_BuildTools](https://aka.ms/vs/17/release/vs_buildtools.exe)**
+- **[Vulkan SDK 1.4.304.1](https://sdk.lunarg.com/sdk/download/1.4.304.1/windows/VulkanSDK-1.4.304.1-Installer.exe)**
+- **[Cmake](https://github.com/Kitware/CMake/releases/download/v4.0.3/cmake-4.0.3-windows-x86_64.msi)**
+- **[Git For Windows](https://github.com/git-for-windows/git/releases/download/v2.50.1.windows.1/Git-2.50.1-64-bit.exe)**
+- **[7z](https://www.7-zip.org/a/7z2500-x64.exe)**
+
+### build
+```shell
+# msvc 2019
+mkdir build && cd build
+cmake .. -G "Visual Studio 17 2022" -A x64 -T v142 -DCMAKE_SYSTEM_VERSION=10.0.19041.0  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCITRA_USE_BUNDLED_QT=1 -DCITRA_USE_BUNDLED_SDL2=1 -DCITRA_ENABLE_COMPATIBILITY_REPORTING=OFF -DUSE_DISCORD_PRESENCE=OFF -DENABLE_MF=ON -DENABLE_FFMPEG_VIDEO_DUMPER=ON
+cd ..
+msbuild build/citra.sln -m:2 -p:Configuration=Release,Platform=x64 -t:Rebuild
+```
+
+
+## Original Fork Description
 
 This fork is based off nightly-1962 (commit `aaeba6759e6d57968ce0b12f6245f45836dec546`). The only change it makes is reverting the core timing rewrite in nightly-1544, which caused a performance drop in Dragon Quest Monsters Joker 3 Professional (https://citra-emu.org/wiki/citra-legacy-builds/#last-build-before-the-core-timing-rewrite). It will likely cause performance regressions for almost every other game.
 
 It is helpful if for some reason you cannot run nightly-1543 (for example, if you use an AMD GPU that no longer uses drivers that work with nightly-1543).
-
 
 ### Significant Nightly Releases
 https://github.com/citra-emu/citra-nightly/releases/tag/nightly-1543
@@ -11,6 +29,9 @@ https://github.com/citra-emu/citra-nightly/releases/tag/nightly-1543
 https://github.com/citra-emu/citra-nightly/releases/tag/nightly-1544
 
 https://github.com/citra-emu/citra-nightly/releases/tag/nightly-1962
+
+
+## Original README
 
 <h1 align="center">
   <br>
