@@ -165,7 +165,6 @@ bool FFmpegVideoStream::Init(FFmpegMuxer& muxer, const Layout::FramebufferLayout
     codec_context->bit_rate = Settings::values.video_bitrate;
     codec_context->width = layout.width;
     codec_context->height = layout.height;
-    // Use 60fps here, since the video is already filtered (resampled)
     codec_context->time_base.num = 1;
     codec_context->time_base.den = 60;
     codec_context->gop_size = 12;
