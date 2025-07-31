@@ -88,7 +88,7 @@ jobs:
   # transifex:
   #   runs-on: ubuntu-latest
   #   container: azahar-emu/build-environment:linux-fresh
-  #   if: ${{ github.repository == 'citra-emu/citra' && !github.head_ref }}
+  #   if: ${{ github.repository == 'Evilmass/citra-dqmj3pro' && !github.head_ref }}
   #   steps:
   #     - uses: actions/checkout@v4
   #       with:
