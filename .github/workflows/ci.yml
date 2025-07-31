@@ -4,8 +4,7 @@ on:
   push:
     branches: [ "*" ]
     tags: [ "*" ]
-  pull_request:
-    branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   # clang-format:
@@ -62,6 +61,11 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
       - name: Install MSVC extra tools
         run: choco install ccache ninja wget
+      # - name: Install vulkan-sdk (MSVC)
+      #   run: |
+      #     wget https://sdk.lunarg.com/sdk/download/1.4.304.1/windows/VulkanSDK-1.4.304.1-Installer.exe -O D:/a/_temp/vulkan.exe
+      #     D:/a/_temp/vulkan.exe --accept-licenses --default-answer --confirm-command install
+      # - name: Disable line ending translation
       - name: Setup Vulkan SDK
         uses: humbletim/setup-vulkan-sdk@v1.2.1
         with:

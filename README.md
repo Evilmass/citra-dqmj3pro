@@ -35,7 +35,7 @@ const u64 frame_ticks = static_cast<u64>(BASE_CLOCK_RATE_ARM11 / SCREEN_REFRESH_
 - **[7z](https://www.7-zip.org/a/7z2500-x64.exe)**
 
 ```shell
-# vulkan SDK
+# vulkan SDK cli installation
 VulkanSDK-1.4.304.1-Installer.exe --accept-licenses --default-answer --confirm-command install --system-proxy=http://127.0.0.1:10808
 ```
 
