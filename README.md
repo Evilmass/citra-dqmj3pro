@@ -8,9 +8,23 @@ Inspired by
 - [Lurpigi/Lime3DS](https://github.com/Lurpigi/lime3ds-dqmj3p)
 - [Slashaim/citra-dqmj3pro](https://github.com/Slashaim/citra-dqmj3pro)
 
-**Warning**
-- Do not cherry-pick this commit: [Update FPS to roughly match the actual 3DS rate](https://github.com/Evilmass/citra-nightly/commit/5e95b35900bb8c840169c4446634ff67982aa842), It will cause the frame rate to randomly drop to 56.
-- also keep `src\core\hw\gpu.h -> SCREEN_REFRESH_RATE = 60`
+**Important**
+
+1. **Revert [Improve core timing accuracy (#5257)](https://github.com/Evilmass/citra-nightly/commit/57aa18f52ea35ca74cd1a6c406a4abf04049b44e)**
+   - This commit introduced sudden frame rate drops to **56 FPS**
+2. **Revert [Update FPS to roughly match the actual 3DS rate](https://github.com/Evilmass/citra-nightly/commit/5e95b35900bb8c840169c4446634ff67982aa842)**
+   - This commit caused the frame rate to fluctuate between **58–60 FPS**
+3. **Maintain `SCREEN_REFRESH_RATE = 60`**
+   - Keeping this setting ensures the emulator runs at a **steady 60 FPS**
+
+```c
+// src\core\hw\gpu.h
+constexpr float SCREEN_REFRESH_RATE = 60;
+
+// src\core\hw\gpu.cpp
+// 268MHz CPU clocks / 60Hz frames per second
+const u64 frame_ticks = static_cast<u64>(BASE_CLOCK_RATE_ARM11 / SCREEN_REFRESH_RATE);
+```
 
 
 ## buildtools
@@ -32,7 +46,7 @@ git clone --recursive https://github.com/Evilmass/citra-dqmj3pro
 mkdir build && cd build
 
 # msvc 2019
-cmake .. -G "Visual Studio 17 2022" -A x64 -T v142 -DCMAKE_SYSTEM_VERSION=10.0.19041.0 -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_BUILD_TYPE=Release -DENABLE_QT_TRANSLATION=ON -DCITRA_ENABLE_COMPATIBILITY_REPORTING=OFF -DENABLE_COMPATIBILITY_LIST_DOWNLOAD=OFF -DUSE_DISCORD_PRESENCE=OFF
+cmake .. -G "Visual Studio 17 2022" -A x64 -T v142 -DCMAKE_SYSTEM_VERSION=10.0.19041.0 -DCMAKE_BUILD_TYPE=Release -DENABLE_QT_TRANSLATION=ON -DCITRA_ENABLE_COMPATIBILITY_REPORTING=OFF -DUSE_DISCORD_PRESENCE=OFF
 cd ..
 msbuild build/citra.sln -m -p:Configuration=Release,Platform=x64 -t:Rebuild
 
