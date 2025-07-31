@@ -22,6 +22,9 @@ namespace GPU {
 
 constexpr float SCREEN_REFRESH_RATE = 60;
 
+// 268MHz CPU clocks / 60Hz frames per second
+const u64 frame_ticks = static_cast<u64>(BASE_CLOCK_RATE_ARM11 / SCREEN_REFRESH_RATE);
+
 // Returns index corresponding to the Regs member labeled by field_name
 #define GPU_REG_INDEX(field_name) (offsetof(GPU::Regs, field_name) / sizeof(u32))
 
